@@ -9,8 +9,7 @@ Create a simpe swift app that shows the a weather condition with the use of the 
 
 <img src="https://user-images.githubusercontent.com/44459664/138584574-c22c57d2-96cb-4550-9fcc-1020b3d03b22.png" width="860" height="500"/>  
 
-# Bounus 
-Adapt the app with the dark mode
+
 
 # Deadline
-Sunday, 24 October 
+Sunday, 26 October 
