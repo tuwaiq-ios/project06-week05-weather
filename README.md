@@ -1,7 +1,7 @@
 # Week05 Project1: Weather
 
 # Description 
-Create a simpe swift app that shows the a weather condition with the use of the API. The application sould display:
+Create a simpe swift app that shows the a weather condition with the use of any weather API. The application should display:
 1. The country name 
 2. Weather condition (like sunny, cloudy, .etc)
 3. The tempreture
