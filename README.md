@@ -2,7 +2,7 @@
 
 # Description 
 Create a simpe swift app that shows the a weather condition with the use of the API. The application sould display:
-1. The county name 
+1. The country name 
 2. weather condition (like sunny, cloudy, .etc)
 3. the tempreture
 
