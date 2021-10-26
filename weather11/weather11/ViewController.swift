@@ -25,6 +25,7 @@ struct Wind : Codable{
 }
 struct WeatherCon : Codable {
     let description : String
+    let id : Int
 }
 
 
@@ -136,7 +137,39 @@ class ViewController: UIViewController {
                 self.speedlabel.text = "Speed: \(da!.wind.speed)"
                 self.humlabel.text = "Humidity: \(da!.main.humidity)"
                 self.deslabel.text = da?.weather.first!.description
-                self.img.image = UIImage(systemName: "cloud.fill")
+                
+                var img1 : String = "nosign"
+                
+                if (801...804).contains(da!.weather.first!.id) {
+                     img1 = "cloud.fill"
+                }
+                
+                else if 800 == da!.weather.first!.id {
+                     img1 = "sun.max.fill"
+                }
+                
+                else if (701...781).contains(da!.weather.first!.id) {
+                     img1 = "smoke.fill"
+                }
+                else if (600...622) .contains(da!.weather.first!.id) {
+                     img1 = "cloud.snow.fill"
+                }
+                else if (500...531) .contains(da!.weather.first!.id) {
+                     img1 = "cloud.rain.fill"
+                }
+                else if (300...321).contains(da!.weather.first!.id) {
+                    
+                     img1 = "cloud.drizzle.fill"
+                }
+                
+                else if (200...232).contains(da!.weather.first!.id) {
+                     img1 = "cloud.bolt.rain.fill"
+                }
+                else {
+                     img1 = "nosign"
+                }
+                
+                self.img.image = UIImage (systemName: img1)
             }
         }
         task.resume()
