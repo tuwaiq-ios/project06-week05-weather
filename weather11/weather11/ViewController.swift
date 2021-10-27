@@ -29,7 +29,6 @@ struct WeatherCon : Codable {
 }
 
 
-var aa : Array<WeatherData> = []
 
 class ViewController: UIViewController {
     
@@ -40,17 +39,31 @@ class ViewController: UIViewController {
     var temperatureLable = UILabel()
     let humlabel = UILabel()
     let deslabel = UILabel()
-    
     let img = UIImageView()
     
+    var imageView: UIImageView = {
+        let imageView = UIImageView(frame: .zero)
+        imageView.image = UIImage(named: "Image")
+        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        lis()
-        view.backgroundColor = UIColor(named: "Bacground")
+        ApiWeather()
         
+        view.insertSubview(imageView, at: 0)
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: view.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        //view.backgroundColor = UIColor (named: "Bacground")
         
         
         cityLable.translatesAutoresizingMaskIntoConstraints = false
@@ -69,7 +82,7 @@ class ViewController: UIViewController {
         
         
         view.addSubview(speedlabel)
-        speedlabel.textColor = .purple
+        speedlabel.textColor = .blue
         speedlabel.font = UIFont.boldSystemFont(ofSize: 25)
         NSLayoutConstraint.activate([speedlabel.topAnchor.constraint(equalTo: view.topAnchor,constant: 80),
                                      speedlabel.leftAnchor.constraint(equalTo: view.leftAnchor,constant: 10),
@@ -80,10 +93,10 @@ class ViewController: UIViewController {
         
         
         view.addSubview(humlabel)
-        humlabel.textColor = .purple
+        humlabel.textColor = .blue
         humlabel.font = UIFont.boldSystemFont(ofSize: 25)
         NSLayoutConstraint.activate([humlabel.topAnchor.constraint(equalTo: view.topAnchor,constant: 80),
-                                     humlabel.leftAnchor.constraint(equalTo: view.leftAnchor,constant: 270),
+                                     humlabel.leftAnchor.constraint(equalTo: view.leftAnchor,constant: 230),
                                     ])
         
         temperatureLable.textColor = .black
@@ -98,7 +111,7 @@ class ViewController: UIViewController {
         ])
         
         
-        deslabel.textColor = .black
+        deslabel.textColor = .blue
         deslabel.font = UIFont.boldSystemFont(ofSize: 20)
         deslabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(deslabel)
@@ -122,12 +135,12 @@ class ViewController: UIViewController {
     }
     
     
-    @objc func lis() {
+    func ApiWeather() {
         let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=Taif&appid=90ff1b516e38b23119e8f40f83596f6a")!
         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
             guard let data = data else { return }
             let da = try? JSONDecoder().decode(WeatherData.self, from: data)
-            print(String(data: data , encoding: .utf8)!)
+            //print(String(data: data , encoding: .utf8)!)
             
             
             
@@ -136,37 +149,37 @@ class ViewController: UIViewController {
                 self.temperatureLable.text = String(format: "%.0f", da!.main.temp - 273.15)
                 self.speedlabel.text = "Speed: \(da!.wind.speed)"
                 self.humlabel.text = "Humidity: \(da!.main.humidity)"
-                self.deslabel.text = da?.weather.first!.description
+                self.deslabel.text = da?.weather[0].description
                 
                 var img1 : String = "nosign"
                 
                 if (801...804).contains(da!.weather.first!.id) {
-                     img1 = "cloud.fill"
+                    img1 = "cloud.fill"
                 }
                 
                 else if 800 == da!.weather.first!.id {
-                     img1 = "sun.max.fill"
+                    img1 = "sun.max.fill"
                 }
                 
                 else if (701...781).contains(da!.weather.first!.id) {
-                     img1 = "smoke.fill"
+                    img1 = "smoke.fill"
                 }
                 else if (600...622) .contains(da!.weather.first!.id) {
-                     img1 = "cloud.snow.fill"
+                    img1 = "cloud.snow.fill"
                 }
                 else if (500...531) .contains(da!.weather.first!.id) {
-                     img1 = "cloud.rain.fill"
+                    img1 = "cloud.rain.fill"
                 }
                 else if (300...321).contains(da!.weather.first!.id) {
                     
-                     img1 = "cloud.drizzle.fill"
+                    img1 = "cloud.drizzle.fill"
                 }
                 
                 else if (200...232).contains(da!.weather.first!.id) {
-                     img1 = "cloud.bolt.rain.fill"
+                    img1 = "cloud.bolt.rain.fill"
                 }
                 else {
-                     img1 = "nosign"
+                    img1 = "nosign"
                 }
                 
                 self.img.image = UIImage (systemName: img1)
