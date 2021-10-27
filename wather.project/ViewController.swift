@@ -75,6 +75,20 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     simpleGetUrlRequest()
       
+      let tap = UISwipeGestureRecognizer(
+           target: self,
+           action: #selector(simpleGetUrlRequest)
+         )
+         tap.direction = .right
+           view.addGestureRecognizer(tap)
+      
+         let tap1 = UISwipeGestureRecognizer(
+           target: self,
+           action: #selector(Dammam)
+         )
+         tap1.direction = .left
+           view.addGestureRecognizer(tap1)
+      
     let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
     backgroundImage.image = UIImage(named: "ImageSet")
     backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
@@ -105,11 +119,6 @@ class ViewController: UIViewController {
         humiditylabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 600)
     ])
       
-      
-      
-      
-      
-      
       let wetharimage = "104"
       let image = UIImage(named: "104")
       let imageView = UIImageView(image: image)
@@ -117,7 +126,7 @@ class ViewController: UIViewController {
       self.view.addSubview(imageView)
   }
     
-  func simpleGetUrlRequest() {
+    @objc func simpleGetUrlRequest() {
     let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=abha&appid=f12e5f499a47eee845b6c9236c9c13a7&units=metric")!
       let task = URLSession.shared.dataTask(with: url) {
       (data, response, error) in
@@ -136,5 +145,21 @@ class ViewController: UIViewController {
     }
     task.resume()
   }
-
+      @objc func Dammam() {
+       let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=dammam&appid=f12e5f499a47eee845b6c9236c9c13a7&units=metric")!
+        let task = URLSession.shared.dataTask(with: url) {
+        (data, response, error) in
+        guard let data = data else { return }
+        let country = try? JSONDecoder().decode(Weather.self, from: data)
+        print(String(data: data, encoding: .utf8)!)
+        DispatchQueue.main.async {
+        self.citylabel.text = country?.name
+        self.templabel.text = "\(Int(round(Double(country!.main.temp))))"
+        self.humiditylabel.text = "\(Int(round(Double(country!.main.humidity))))"
+        self.mainlabel.text = country!.weather[0].main
+        self.describtionlabel.text = country!.weather[0].description
+        }
+       }
+       task.resume()
+       }
 }
