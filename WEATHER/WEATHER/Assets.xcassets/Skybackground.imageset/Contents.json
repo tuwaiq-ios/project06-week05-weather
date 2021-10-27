@@ -1,0 +1,35 @@
+{
+  "images" : [
+    {
+      "filename" : "wtnmw2c268hk7tnkzuut-1.jpg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "light"
+        }
+      ],
+      "filename" : "wtnmw2c268hk7tnkzuut.jpg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Tree-Dark-Cloud-Extreme-Weather-4K-Ultra-HD-Mobile-Wallpaper.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
+  }
+}
