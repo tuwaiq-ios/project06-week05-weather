@@ -1,0 +1,6 @@
+framework module Pods_Weather_App_Project_5_Atheer_Alzahrani {
+  umbrella header "Pods-Weather App Project 5 Atheer Alzahrani-umbrella.h"
+
+  export *
+  module * { export * }
+}
