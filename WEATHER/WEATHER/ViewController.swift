@@ -68,6 +68,20 @@ class ViewController: UIViewController {
     
     override func viewDidLoad () {
         super.viewDidLoad ()
+        
+        let swipelift = UISwipeGestureRecognizer(
+              target: self,
+              action: #selector(Riyadh))
+             swipelift.direction = .left
+             view.addGestureRecognizer(swipelift)
+             view.isUserInteractionEnabled = true
+          let swipelifttwo = UISwipeGestureRecognizer(
+              target: self,
+              action: #selector(Jeddah))
+           swipelifttwo.direction = .right
+             view.addGestureRecognizer(swipelifttwo)
+             view.isUserInteractionEnabled = true
+        
 
         simpleGeturlRequest()
         
@@ -153,4 +167,42 @@ class ViewController: UIViewController {
          }
              task.resume()
         }
-                }
+    @objc func Riyadh() {
+        let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=Riyadh&appid=f12e5f499a47eee845b6c9236c9c13a7&units=metric")!
+        let task = URLSession.shared.dataTask(with: url) {
+          (data, response, error) in
+          guard let data = data else { return }
+          let country = try? JSONDecoder().decode(weatherAPI.self, from: data)
+          print(String(data: data, encoding: .utf8)!)
+          DispatchQueue.main.async {
+            self.citylabel.text = country!.name
+            self.templabel.text = "\(Int(round(Double(country!.main.humidity))))"
+            self.feellikeLabel.text = "\(Int(round(Double(country!.main.feels_like))))"
+            self.mainlabel.text = country?.weather[0].main
+            self.describtionlabel.text = country?.weather[0].description
+              
+          }
+        }
+        task.resume()
+      }
+    @objc func Jeddah() {
+        let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=Jeddah&appid=f12e5f499a47eee845b6c9236c9c13a7&units=metric")!
+        let task = URLSession.shared.dataTask(with: url) {
+          (data, response, error) in
+          guard let data = data else { return }
+          let country = try? JSONDecoder().decode(weatherAPI.self, from: data)
+          print(String(data: data, encoding: .utf8)!)
+          DispatchQueue.main.async {
+            self.citylabel.text = country!.name
+            self.templabel.text = "\(Int(round(Double(country!.main.humidity))))"
+            self.feellikeLabel.text = "\(Int(round(Double(country!.main.feels_like))))"
+            self.mainlabel.text = country?.weather[0].main
+            self.describtionlabel.text = country?.weather[0].description
+              
+          }
+        }
+        task.resume()
+      }
+    
+    
+}
