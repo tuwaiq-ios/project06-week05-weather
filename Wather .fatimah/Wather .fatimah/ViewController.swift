@@ -87,7 +87,7 @@ class ViewController: UIViewController {
         tap1.direction = .left
         view.addGestureRecognizer(tap1)
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-        backgroundImage.image = UIImage(named: "background")
+        backgroundImage.image = UIImage(named: "Image")
         backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
         self.view.insertSubview(backgroundImage, at: 0)
         view.addSubview(citylabel)
