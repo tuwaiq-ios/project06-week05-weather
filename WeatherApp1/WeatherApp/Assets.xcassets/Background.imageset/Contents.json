@@ -1,16 +1,46 @@
 {
   "images" : [
     {
-      "filename" : "EB482960-8873-4AE0-A8D4-14910A833941.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "562CFCAC-3A5C-4B79-8CD7-94B4289D407E 2.jpg",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "562CFCAC-3A5C-4B79-8CD7-94B4289D407E 2.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "EB482960-8873-4AE0-A8D4-14910A833941.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }

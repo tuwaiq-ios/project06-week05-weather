@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         //
         //انشاء متغير للفيو وخلفية واعطائها قيود
         //
-        let imageview = UIImageView(image: UIImage(named: "مكة"))
+        let imageview = UIImageView(image: UIImage(named: "background"))
         imageview.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(imageview)
